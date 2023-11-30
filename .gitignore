@@ -4,6 +4,7 @@
 
 # Python
 **/.venv/
+**.pyc
 
 # Other
 **.vscode
