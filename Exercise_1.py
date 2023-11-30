@@ -31,6 +31,14 @@ evidence = np.sum(prior * likelihood) * v_step
 # Get posterior probability.
 posterior = prior * likelihood / evidence
 
-# Plot data.
+# Analysis of data.
+i_max_prior = np.argmax(prior)
+i_max_likelihood = np.argmax(likelihood)
+i_max_posterior = np.argmax(posterior)
+
+# Plot posterior.
 plt.plot(v, posterior)
+plt.axvline(v[i_max_prior])
+plt.axvline(v[i_max_likelihood])
+plt.axvline(v[i_max_posterior])
 plt.show()
