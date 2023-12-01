@@ -35,10 +35,9 @@ posterior = prior * likelihood / evidence
 i_max_prior = np.argmax(prior)
 i_max_likelihood = np.argmax(likelihood)
 i_max_posterior = np.argmax(posterior)
+print(f"mode(p(v|u)) = {v[i_max_posterior]}")
 
 # Plot posterior.
 plt.plot(v, posterior)
-plt.axvline(v[i_max_prior])
-plt.axvline(v[i_max_likelihood])
 plt.axvline(v[i_max_posterior])
 plt.show()
