@@ -6,14 +6,16 @@ import functions as fn
 
 matplotlib.use('Qt5Agg')
 
-# Relation between intensity and size.
 def g(v):
+    '''Relation between intensity and size.'''
     return np.power(v, 2)
 
 def g_1(v):
+    '''First derivative of g.'''
     return 2.0 * v
 
 def F_1(v, v_p, Sigma_p, u, g, Sigma_u, g_1):
+    '''First derivative of free energy.'''
     return - (v - v_p) / Sigma_p + (u - g) / Sigma_u * g_1
 
 # Data from environment.
