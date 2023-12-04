@@ -4,6 +4,8 @@ This repository contains source codes and material produced for the exam of the 
 
 The course is teached by prof. Tommaso Brischetto Costa.
 
+The paper presented during the exam is titled [A tutorial on the free-energy framework for modelling perception and learning](http://dx.doi.org/10.1016/j.jmp.2015.11.003).
+
 ## Environment
 The code is writte in Python 3.10.
 
