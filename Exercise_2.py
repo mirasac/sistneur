@@ -14,12 +14,11 @@ def F_1(v):
 
 # Time simulation data.
 Delta_t = 0.01
-t_min = 0.0
 t_max = 5.0
 
 def main():
     # Auxiliary data.
-    n_t = int((t_max - t_min) / Delta_t) + 1
+    n_t = int(t_max / Delta_t) + 1
     t = np.empty(n_t)
     phi = np.empty(n_t)
 

@@ -8,7 +8,6 @@ import functions as fn
 
 v_mean = 5.0
 v_variance = 2.0
-t_min = 0.0
 t_max = 20.0
 alpha = 0.01
 n_trials = 1000
@@ -19,7 +18,7 @@ def main():
     trial = np.empty(n_trials + 1)
     sigma = np.empty(n_trials + 1)
     g = v_mean
-    n_t = int((t_max - t_min) / ex2.Delta_t) + 1
+    n_t = int(t_max / ex2.Delta_t) + 1
 
     # Initial conditions for trials simulation.
     trial[0] = 0

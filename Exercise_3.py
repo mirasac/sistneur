@@ -16,7 +16,7 @@ def epsilon_u_1(phi, epsilon_u):
 
 def main():
     # Auxiliary data.
-    n_t = int((ex2.t_max - ex2.t_min) / ex2.Delta_t) + 1
+    n_t = int(ex2.t_max / ex2.Delta_t) + 1
     t = np.empty(n_t)
     phi = np.empty(n_t)
     epsilon_p = np.empty(n_t)
