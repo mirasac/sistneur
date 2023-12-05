@@ -2,7 +2,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-import functions as fn
+import utilities as ut
 
 def g(v):
     '''Relation between intensity and size.'''
@@ -23,8 +23,8 @@ def main():
     v = np.linspace(0.01, 5.0, num=10000)
 
     # Build needed probability distributions.
-    prior = fn.gaussian(v, v_p, Sigma_p)
-    likelihood = fn.gaussian(u, g(v), Sigma_u)
+    prior = ut.gaussian(v, v_p, Sigma_p)
+    likelihood = ut.gaussian(u, g(v), Sigma_u)
     evidence = np.sum(prior * likelihood) * v_step
 
     # Get posterior probability.

@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import Exercise_2 as ex2
-import functions as fn
 
 v_mean = 5.0
 v_variance = 2.0
