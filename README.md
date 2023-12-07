@@ -11,3 +11,6 @@ The code is writte in Python 3.10.
 
 ### Repostory structure
 Each file is named as the execise it refers to and it is a script containing my solution.
+
+## License
+All material in this repository is under the license specified in file [LICENSE](https://raw.githubusercontent.com/mirasac/sistneur/main/LICENSE), except for files matching name `Fig*.jpg` in folder `presentation/figures/`, which are creation of Rafal Bogacz (cf. CC BY license specified in the paper).
