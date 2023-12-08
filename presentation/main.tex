@@ -38,13 +38,23 @@
 \section{Introduction}
 \begin{frame}{Introduction}
   \begin{itemize}
-    \item<1-> Rao and Ballard's predictive coding model.
-    \note[item]<1->{Prior predictions are compared to stimuli and the model parameters are updated considering prediction errors.}
-    \note[item]<1->{Features corresponding to receptive fields in the the primary sensory cortex are learned.}
-    \item<2-> Friston's free-energy model.
-    \note[item]<2->{}
-    \item<3-> Hebbian learning
-    \note[item]<1->{Synaptic strenght is changed proportionally to pre-synaptic neuron and post-synaptic neuron activities.}
+    \item<1-> Predictive coding model of Rao and Ballard.
+    \note[item]<1->{Prior predictions are compared to stimuli and the model parameters are updated considering prediction errors, features corresponding to receptive fields in the the primary sensory cortex are learned.}
+    \item<2-> Free-energy model of Friston.
+    \note[item]<2->{Weight stimuli by their noise, learn features using their covariance, implement attentional modulation changing the variance of attended features.}
+    \item<3-> Hebbian learning.
+    \note[item]<3->{Synaptic strenght is changed proportionally to activities of pre-synaptic and post-synaptic neurons.}
+    \item<4-> Free energy minimization.
+    \note[item]<4->{Minimization of free energy can be seen as the base of many theories of perception.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Hypotheses}
+  \begin{itemize}
+    \item<1-> Local computation.
+    \note[item]<1->{The state of a neuron is determined only by the synaptic weight and the state of its input neurons.}
+    \item<2-> Local plasticity.
+    \note[item]<2->{Synaptic plasticity depends only on the activities of pre-synaptic and post-synaptic neurons.}
   \end{itemize}
 \end{frame}
 

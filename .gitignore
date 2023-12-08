@@ -9,6 +9,7 @@
 # Other
 **.vscode
 **.dat
+**/del.*
 
 # LaTeX
 **.aux
