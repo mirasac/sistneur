@@ -66,6 +66,21 @@
 
 \section{Single variable model}
 \begin{frame}
+  \frametitle{Single variable model}
+  \begin{itemize}
+    \item<1-> Feature is a scalar variable $v \in \Omega_v$.
+    \item<1-> Stimulus is a scalar variable $u \in \Omega_u$.
+    \note[item]<1->{The model describes the inference of a single variable from a single sensory input.}
+    \item<2-> Relation between feature and stimulus is a differentiable function $g : \Omega_v \to \Omega_u$.
+    \note[item]<2->{In general inferred variable and sensory input are related by some smooth function.}
+    \item<3-> Sensory input $p(u|v)$ is affected by gaussian noise and it has mean $g(v)$ and variance $\Sigma_u$.
+    \note[item]<3->{Sensory input and stimulus are drafted from the same space.}
+    \item<4-> Prior knowledge of the feature $p(v)$ follows a gaussian distribution with mean $v_p$ and variance $\Sigma_p$.
+    \note[item]<4->{Information gained and constantly updated from previous experience.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
   \frametitle{Exact solution of the inference problem}
   \begin{itemize}
     \item % MC continue.
