@@ -43,7 +43,7 @@
     \note[item]<1->{Prior predictions are compared to stimuli and the model parameters are updated considering prediction errors, features corresponding to receptive fields in the the primary sensory cortex are learned.}
     \item<2-> Free-energy model of Friston.
     \note[item]<2->{Weight stimuli by their noise, learn features using their covariance, implement attentional modulation changing the variance of attended features.}
-    \item<3-> Hebbian learning.
+    \item<3-> Hebbian plasticity.
     \note[item]<3->{Synaptic strenght is changed proportionally to activities of pre-synaptic and post-synaptic neurons.}
     \item<4-> Free energy minimization.
     \note[item]<4->{Minimization of free energy can be seen as the base of many theories of perception.}
@@ -107,7 +107,25 @@
 \begin{frame}
   \frametitle{Approximated solution of the inference problem}
   \begin{itemize}
-    \item % MC continue.
+    \item<1-> Most likely value of the feature is a scalar variable $\phi \in \Omega_v$.
+    \note[item]<1->{Evaluating the mode of the posterior instead of the whole function is more biologically plausible.}
+    \item<2-> Equivalent to minimize negative free energy:
+      \begin{equation}
+        \label{eq:negative_free_energy}
+        F(v, u) = \ln{\big( p(v) \big)} + \ln{\big( p(u|v) \big)}
+        \quad .
+      \end{equation}
+    \note[item]<2->{The most likely feature value is the fixed point of the gradient descent method applied to the negative free energy.}
+    \item<3-> Prediction errors:
+      \begin{align}
+        \label{eq:error_prior}
+        \epsilon_p = \frac{v - v_p}{\Sigma_p}
+        \quad , \\
+        \label{eq:error_stimulus}
+        \epsilon_u = \frac{u - g(v)}{\Sigma_u}
+        \quad .
+      \end{align}
+    \note[item]<3->{Prediction errors can be introduced as new variables to extend the dynamical system.}
   \end{itemize}
 \end{frame}
 
@@ -115,9 +133,24 @@
 
 \begin{frame}
   \frametitle{Neural implementation}
-  \begin{itemize}
-    \item % MC continue.
-  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.5\textheight]{Fig3}
+  \end{center}
+  Fig. 3 from article: network implementation of the dynamical system
+  \begin{equation}
+    \label{eq:dynamical_system_single}
+    \begin{cases}
+      \dot{\phi} = \epsilon_u g^\prime(\phi) - \epsilon_p \\
+      \dot{\epsilon_p} = \phi - v_p - \Sigma_p \epsilon_p \\
+      \dot{\epsilon_u} = u - g(\phi) - \Sigma_u \epsilon_u
+    \end{cases}
+    \quad .
+  \end{equation}
+  \note{
+    \begin{itemize}
+      \item Hypotheses on local computation and Hebbian plasticity are satisfied.
+    \end{itemize}
+  }
 \end{frame}
 
 % MC insert Exercise_3.
@@ -126,7 +159,8 @@
 \begin{frame}
   \frametitle{Learning model parameters}
   \begin{itemize}
-    \item % MC continue.
+    \item<1-> % MC continue.
+    \note[item]<1->{Introducing prediction errors as variables of the model allows to learn model parameters.}
   \end{itemize}
 \end{frame}
 
