@@ -28,7 +28,8 @@
   \titlepage
   \note{
     \begin{itemize}
-      \item % MC general overview of presentation.
+      \item In this presentation the main topics of the paper are presented, in the same order they appear in the paper.
+      % MC also write that my results from exercises are present if I decide to put them in the presentation.
     \end{itemize}
   }
 \end{frame}
@@ -109,7 +110,7 @@
   \begin{itemize}
     \item<1-> Most likely value of the feature is a scalar variable $\phi \in \Omega_v$.
     \note[item]<1->{Evaluating the mode of the posterior instead of the whole function is more biologically plausible.}
-    \item<2-> Equivalent to minimize negative free energy:
+    \item<2-> Equivalent to minimize negative free energy with respect to the feature:
       \begin{equation}
         \label{eq:negative_free_energy}
         F(v, u) = \ln{\big( p(v) \big)} + \ln{\big( p(u|v) \big)}
@@ -119,13 +120,13 @@
     \item<3-> Prediction errors:
       \begin{align}
         \label{eq:error_prior}
-        \epsilon_p = \frac{v - v_p}{\Sigma_p}
+        \varepsilon_p = \frac{v - v_p}{\Sigma_p}
         \quad , \\
         \label{eq:error_stimulus}
-        \epsilon_u = \frac{u - g(v)}{\Sigma_u}
+        \varepsilon_u = \frac{u - g(v)}{\Sigma_u}
         \quad .
       \end{align}
-    \note[item]<3->{Prediction errors can be introduced as new variables to extend the dynamical system.}
+    \note[item]<3->{Prediction errors can be introduced as new variables to extend the dynamical system and to allow learning.}
   \end{itemize}
 \end{frame}
 
@@ -140,9 +141,9 @@
   \begin{equation}
     \label{eq:dynamical_system_single}
     \begin{cases}
-      \dot{\phi} = \epsilon_u g^\prime(\phi) - \epsilon_p \\
-      \dot{\epsilon_p} = \phi - v_p - \Sigma_p \epsilon_p \\
-      \dot{\epsilon_u} = u - g(\phi) - \Sigma_u \epsilon_u
+      \dot{\phi} = \varepsilon_u g^\prime(\phi) - \varepsilon_p \\
+      \dot{\varepsilon_p} = \phi - v_p - \Sigma_p \varepsilon_p \\
+      \dot{\varepsilon_u} = u - g(\phi) - \Sigma_u \varepsilon_u
     \end{cases}
     \quad .
   \end{equation}
@@ -155,12 +156,16 @@
 
 % MC insert Exercise_3.
 
-% MC here talk about prediction errors.
 \begin{frame}
   \frametitle{Learning model parameters}
   \begin{itemize}
-    \item<1-> % MC continue.
-    \note[item]<1->{Introducing prediction errors as variables of the model allows to learn model parameters.}
+    \item<1-> Choose model parameters to maximize $p(u)$.
+    \note[item]<1->{Model parameters are variables mean and variance.}
+    \item<2-> Equivalent to maximize negative free energy with respect to parameters.
+    \note[item]<2->{Feature and stimulus joint probability, hence free energy, is maximized instead of the marginal likelihood.}
+    % MC continue with a better explanation to merge convergence of sample mean and gradients written with prediction errors.
+    \note[item]<3->{Parameters are updated each time with different samples hence the convergence is guaranteed only as mean over all samples.}
+    \note[item]<3->{Introducing prediction errors as variables of the model allows to learn model parameters.}
   \end{itemize}
 \end{frame}
 
