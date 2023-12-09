@@ -3,7 +3,7 @@
 %%%%%%%%% Packages %%%%%%%%%
 \documentclass[aspectratio=43]{beamer}
 \usepackage[T1]{fontenc}
-%\usepackage{derivative}
+\usepackage{derivative}
 \usepackage{pgfpages}
 
 %%%%%%%%% Packages setup %%%%%%%%%
@@ -83,7 +83,22 @@
 \begin{frame}
   \frametitle{Exact solution of the inference problem}
   \begin{itemize}
-    \item % MC continue.
+    \item<1-> Bayes theorem:
+      \begin{equation}
+        \label{eq:bayes}
+        p(v|u) = \frac{p(v) p(u|v)}{p(u)}
+        \quad .
+      \end{equation}
+    \note[item]<1->{Knowledge of feature depending on a given stimulus is the posterior. Prior knowledge on the feature is the prior, distribution of stimulus is the likelihood.}
+    \item<2-> Marginal likelihood of stimuli:
+      \begin{equation}
+        \label{eq:marginal}
+        p(u) = \int_{\Omega_v} p(v) p(u|v) \odif{v}
+        \quad .
+      \end{equation}
+    \note[item]<2->{In general, marginal likelihood is difficult to evaluate.}
+    \item<3-> No implementation in simple biological systems.
+    \note[item]<3->{Complex calculations and infinite nodes are needed to represent each value of the posterior.}
   \end{itemize}
 \end{frame}
 
