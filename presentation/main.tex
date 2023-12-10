@@ -74,7 +74,7 @@
     \note[item]<1->{The model describes the inference of a single variable from a single sensory input.}
     \item<2-> Relation between feature and stimulus is a differentiable function $g : \Omega_v \to \Omega_u$.
     \note[item]<2->{In general inferred variable and sensory input are related by some smooth function.}
-    \item<3-> Sensory input $p(u|v)$ is affected by gaussian noise and it has mean $g(v)$ and variance $\Sigma_u$.
+    \item<3-> Sensory input $p(u | v)$ is affected by gaussian noise and it has mean $g(v)$ and variance $\Sigma_u$.
     \note[item]<3->{Sensory input and stimulus are drafted from the same space.}
     \item<4-> Prior knowledge of the feature $p(v)$ follows a gaussian distribution with mean $v_p$ and variance $\Sigma_p$.
     \note[item]<4->{Information gained and constantly updated from previous experience.}
@@ -87,14 +87,14 @@
     \item<1-> Bayes theorem:
       \begin{equation}
         \label{eq:bayes}
-        p(v|u) = \frac{p(v) p(u|v)}{p(u)}
+        p(v | u) = \frac{p(v) p(u | v)}{p(u)}
         \quad .
       \end{equation}
     \note[item]<1->{Knowledge of feature depending on a given stimulus is the posterior. Prior knowledge on the feature is the prior, distribution of stimulus is the likelihood.}
     \item<2-> Marginal likelihood of stimuli:
       \begin{equation}
         \label{eq:marginal}
-        p(u) = \int_{\Omega_v} p(v) p(u|v) \odif{v}
+        p(u) = \int_{\Omega_v} p(v) p(u | v) \odif{v}
         \quad .
       \end{equation}
     \note[item]<2->{In general, marginal likelihood is difficult to evaluate.}
@@ -110,10 +110,10 @@
   \begin{itemize}
     \item<1-> Most likely value of the feature is a scalar variable $\phi \in \Omega_v$.
     \note[item]<1->{Evaluating the mode of the posterior instead of the whole function is more biologically plausible.}
-    \item<2-> Equivalent to minimize negative free energy with respect to the feature:
+    \item<2-> Equivalent to maximize negative free energy with respect to the feature:
       \begin{equation}
         \label{eq:negative_free_energy}
-        F(v, u) = \ln{\big( p(v) p(u|v) \big)}
+        F(v, u) = \ln{\big( p(v) p(u | v) \big)}
         \quad .
       \end{equation}
     \note[item]<2->{The most likely feature value is the fixed point of the gradient descent method applied to the negative free energy.}
@@ -209,7 +209,22 @@
 \begin{frame}
   \frametitle{Free energy framework}
   \begin{itemize}
-    \item % MC continue.
+    \item<1-> Minimization of Kullback-Leibler divergence:
+      \begin{equation}
+        \label{eq:kl_divergence}
+        KL(q(v) || p(u | v)) = \int_{\Omega_v} q(v) \ln \Bigg( \frac{q(v)}{p(v | u)} \Bigg) \odif{v}
+        \quad .
+      \end{equation}
+    \note[item]<1->{In general, the posterior is approximated by a simpler probability distribution and the divergence between the two is minimized.}
+    \item<2-> Definition of negative free energy:
+    \begin{equation}
+      \label{eq:negative_free_energy_definition}
+      F(v, u) = \int_{\Omega_v} q(v) \ln \Bigg( \frac{p(v, u)}{q(v)} \Bigg) \odif{v}
+      \quad .
+    \end{equation}
+    \note[item]<2->{Minimize KL divergence or maximize negative free energy to learn most likely model value, maximize marginal likelihood or maximize negative free energy to learn model parameters.}
+    \item<3-> For the models discussed in the paper: $q(v) = \delta(v - \phi)$.
+    \note[item]<3->{Equation~\eqref{eq:negative_free_energy} is recovered using delta function centered in the most likely feature value as probability distribution.}
   \end{itemize}
 \end{frame}
 
