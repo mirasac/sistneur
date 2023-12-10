@@ -16,6 +16,9 @@
 \usecolortheme{spruce}
 \graphicspath{{./figures/}{../code/figures/}}
 
+%%%%%%%%% Macros %%%%%%%%%
+\newcommand{\transpose}{\intercal}
+
 %%%%%%%%% Document informations %%%%%%%%%
 \title{Summary of \emph{A tutorial on the free-energy framework for modelling perception and learning} by Rafal Bogacz}
 \author{Marco Casari}
@@ -230,27 +233,45 @@
 
 
 
-% MC here hint to the use of matrix algebra.
 \section{Multiple variables model}
 \begin{frame}
   \frametitle{Multiple variables model}
-  \begin{itemize}
-    \item % MC continue.
-  \end{itemize}
-\end{frame}
-
-% MC here talk about prediction errors.
-\begin{frame}
-  \frametitle{Learning parameters}
-  \begin{itemize}
-    \item % MC continue.
-  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.8\textheight]{Fig5}
+  \end{center}
+  Fig. 5 from article: example of a model with 2 features and 2 stimuli. Equations are rewritten using matrix notation, but local plasticity is not satisfied.
+  \note{
+    \begin{itemize}
+      \item Calculus rules are extended to work elementwise on vectors and matrices, multivariate gaussian distribution and nonlinear relation between variables and stimuli are used.
+      \item The inverse of covariance matrix depends on non-adjacent neurons, Hebbian plasticity is partially satisfied due to the nonlinear relation.
+    \end{itemize}
+  }
 \end{frame}
 
 \begin{frame}
   \frametitle{Hierarchical structure implementation}
   \begin{itemize}
-    \item % MC continue.
+    \item<1-> Parallel to structure of cortical areas.
+    \note[item]<1->{Information is used and travels in different layers of the cortex.}
+    \item<2-> Generalized equations for the inference task:
+      \begin{align}
+        \label{eq:dynamical_system_phi}
+        \dot{\vec{\phi}}_i & = - \vec{\varepsilon}_i + h^\prime(\vec{\phi}_i) \times \Theta_{i-1}^\transpose \vec{\varepsilon}_{i-1}
+        \quad , \\
+        \label{eq:dynamical_system_epsilon}
+        \dot{\vec{\varepsilon}}_i & = \vec{\phi}_i - \Theta_i h(\vec{\phi}_{i+1}) - \Sigma_i \vec{\varepsilon}_i
+        \quad .
+      \end{align}
+    \item<2-> Generalized equations for the learning task:
+      \begin{align}
+        \label{eq:dynamical_system_sigma}
+        \pdv{F}{\Sigma_i} & = \frac{1}{2} (\vec{\varepsilon}_i \vec{\varepsilon}_i^\transpose - \Sigma_i^{-1})
+        \quad , \\
+        \label{eq:dynamical_system_theta}
+        \pdv{F}{\Theta_i} & = \vec{\varepsilon}_i h(\vec{\phi}_{i+1})^\transpose
+        \quad .
+      \end{align}
+    \note[item]<2->{Note the elementwise product and matrices of model and relation parameters.}
   \end{itemize}
 \end{frame}
 
