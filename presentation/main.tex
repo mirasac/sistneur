@@ -82,7 +82,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Exact solution of the inference problem}
+  \frametitle{Exact solution to the inference problem}
   \begin{itemize}
     \item<1-> Bayes theorem:
       \begin{equation}
@@ -106,14 +106,14 @@
 % MC insert Exercise_1.
 
 \begin{frame}
-  \frametitle{Approximated solution of the inference problem}
+  \frametitle{Approximate solution to the inference problem}
   \begin{itemize}
     \item<1-> Most likely value of the feature is a scalar variable $\phi \in \Omega_v$.
     \note[item]<1->{Evaluating the mode of the posterior instead of the whole function is more biologically plausible.}
     \item<2-> Equivalent to minimize negative free energy with respect to the feature:
       \begin{equation}
         \label{eq:negative_free_energy}
-        F(v, u) = \ln{\big( p(v) \big)} + \ln{\big( p(u|v) \big)}
+        F(v, u) = \ln{\big( p(v) p(u|v) \big)}
         \quad .
       \end{equation}
     \note[item]<2->{The most likely feature value is the fixed point of the gradient descent method applied to the negative free energy.}
@@ -126,7 +126,7 @@
         \varepsilon_u = \frac{u - g(v)}{\Sigma_u}
         \quad .
       \end{align}
-    \note[item]<3->{Prediction errors can be introduced as new variables to extend the dynamical system and to allow learning.}
+    \note[item]<3->{Prediction errors are introduced as new variables to extend the dynamical system and satisfy Hebbian plasticity.}
   \end{itemize}
 \end{frame}
 
@@ -149,7 +149,7 @@
   \end{equation}
   \note{
     \begin{itemize}
-      \item Hypotheses on local computation and Hebbian plasticity are satisfied.
+      \item Note that all three hypotheses are satisfied.
     \end{itemize}
   }
 \end{frame}
@@ -160,19 +160,49 @@
   \frametitle{Learning model parameters}
   \begin{itemize}
     \item<1-> Choose model parameters to maximize $p(u)$.
-    \note[item]<1->{Model parameters are variables mean and variance.}
-    \item<2-> Equivalent to maximize negative free energy with respect to parameters.
-    \note[item]<2->{Feature and stimulus joint probability, hence free energy, is maximized instead of the marginal likelihood.}
-    % MC continue with a better explanation to merge convergence of sample mean and gradients written with prediction errors.
-    \note[item]<3->{Parameters are updated each time with different samples hence the convergence is guaranteed only as mean over all samples.}
-    \note[item]<3->{Introducing prediction errors as variables of the model allows to learn model parameters.}
+    \note[item]<1->{Model parameters are mean and variance of variables.}
+    \item<2-> Equivalent to maximize negative free energy with respect to parameters:
+      \begin{align}
+        \label{eq:gradient_mean_prior}
+        \pdv{F}{v_p} & = \frac{\phi - v_p}{\Sigma_p}
+        \quad , \\
+        \label{eq:gradient_variance_prior}
+        \pdv{F}{\Sigma_p} & = \frac{1}{2} \Bigg( \frac{(\phi - v_p)^2}{\Sigma_p^2} - \frac{1}{\Sigma_p} \Bigg)
+        \quad , \\
+        \label{eq:gradient_variance_stimulus}
+        \pdv{F}{\Sigma_u} & = \frac{1}{2} \Bigg( \frac{(u - g(\phi))^2}{\Sigma_u^2} - \frac{1}{\Sigma_u} \Bigg)
+        \quad .
+      \end{align}
+    \note[item]<2->{The fixed point of this dynamical system exists only as sample mean over the occured events of perception.}
+    \item<3-> Hebbian plasticity is satisfied using prediction errors.
+    \note[item]<3->{Without prediction errors, the computation is still local.}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Learning relation between variable and stimulus}
+  \frametitle{Learning relation parameter}
   \begin{itemize}
-    \item % MC continue.
+    \item<1-> Linear relation:
+      \begin{equation}
+        \label{eq:relation_linear}
+        g(v, \theta) = \theta v
+        \quad .
+      \end{equation}
+    \note[item]<1->{Only one parameter is considered without loss of generality.}
+    \item<2-> Nonlinear relation:
+      \begin{equation}
+        \label{eq:relation_nonlinear}
+        g(v, \theta) = \theta h(v)
+        \quad .
+      \end{equation}
+    \note[item]<2->{The nonlinearity increases the complexity of the network and partially changes Hebbian plasticity, still keeping it local.}
+    \item<3-> Gradient of negative free energy for learning:
+      \begin{equation}
+        \label{eq:relation_nonlinear}
+        \pdv{F}{\theta} = \frac{u - \theta h(\phi)}{\Sigma_u} h(\phi) = \varepsilon_u h(\phi)
+        \quad .
+      \end{equation}
+    \note[item]<3->{Same consideration of model parameters apply to the relation parameter.}
   \end{itemize}
 \end{frame}
 
