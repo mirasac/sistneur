@@ -31,7 +31,7 @@
   \titlepage
   \note{
     \begin{itemize}
-      \item In this presentation the main topics of the paper are presented, in the same order they appear in the paper.
+      \item In this presentation the main topics of the paper are presented in order of appearance.
       % MC also write that my results from exercises are present if I decide to put them in the presentation.
     \end{itemize}
   }
@@ -56,14 +56,14 @@
 
 \begin{frame}
   \frametitle{Working hypotheses}
-  \begin{itemize}
+  \begin{enumerate}
     \item<1-> Local computation.
     \note[item]<1->{The state of a neuron is determined only by the synaptic weight and the state of its input neurons.}
     \item<2-> Local plasticity.
     \note[item]<2->{Synaptic plasticity depends only on the activities of pre-synaptic and post-synaptic neurons.}
     \item<3-> Basic neuronal computation.
     \note[item]<3->{The state of a neuron is the result of the application of a monotonic function to the linear combination of states and synaptic weights of input neurons.}
-  \end{itemize}
+  \end{enumerate}
 \end{frame}
 
 
@@ -176,7 +176,7 @@
         \pdv{F}{\Sigma_u} & = \frac{1}{2} \Bigg( \frac{(u - g(\phi))^2}{\Sigma_u^2} - \frac{1}{\Sigma_u} \Bigg)
         \quad .
       \end{align}
-    \note[item]<2->{The fixed point of this dynamical system exists only as sample mean over the occured events of perception.}
+    \note[item]<2->{The fixed point of this dynamical system exists only as sample mean over the occured events of perception, where most likely feature value and stimulus are known.}
     \item<3-> Hebbian plasticity is satisfied using prediction errors.
     \note[item]<3->{Without prediction errors, the computation is still local.}
   \end{itemize}
@@ -215,7 +215,7 @@
     \item<1-> Minimization of Kullback-Leibler divergence:
       \begin{equation}
         \label{eq:kl_divergence}
-        KL(q(v) || p(u | v)) = \int_{\Omega_v} q(v) \ln \Bigg( \frac{q(v)}{p(v | u)} \Bigg) \odif{v}
+        KL(q(v) || p(v | u)) = \int_{\Omega_v} q(v) \ln \Bigg( \frac{q(v)}{p(v | u)} \Bigg) \odif{v}
         \quad .
       \end{equation}
     \note[item]<1->{In general, the posterior is approximated by a simpler probability distribution and the divergence between the two is minimized.}
@@ -243,7 +243,7 @@
   \note{
     \begin{itemize}
       \item Calculus rules are extended to work elementwise on vectors and matrices, multivariate gaussian distribution and nonlinear relation between variables and stimuli are used.
-      \item The inverse of covariance matrix depends on non-adjacent neurons, Hebbian plasticity is partially satisfied due to the nonlinear relation.
+      \item The inverse of covariance matrix depends on non-adjacent neurons, Hebbian plasticity is again partially satisfied.
     \end{itemize}
   }
 \end{frame}
