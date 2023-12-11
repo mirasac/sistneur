@@ -145,14 +145,14 @@
     \label{eq:dynamical_system_single}
     \begin{cases}
       \dot{\phi} = \varepsilon_u g^\prime(\phi) - \varepsilon_p \\
-      \dot{\varepsilon_p} = \phi - v_p - \Sigma_p \varepsilon_p \\
-      \dot{\varepsilon_u} = u - g(\phi) - \Sigma_u \varepsilon_u
+      \dot{\varepsilon}_p = \phi - v_p - \Sigma_p \varepsilon_p \\
+      \dot{\varepsilon}_u = u - g(\phi) - \Sigma_u \varepsilon_u
     \end{cases}
     \quad .
   \end{equation}
   \note{
     \begin{itemize}
-      \item Note that all three hypotheses are satisfied.
+      \item Note that hypotheses and Hebbian plasticity are satisfied.
     \end{itemize}
   }
 \end{frame}
@@ -256,43 +256,58 @@
     \item<2-> Generalized equations for the inference task:
       \begin{align}
         \label{eq:dynamical_system_phi}
-        \dot{\vec{\phi}}_i & = - \vec{\varepsilon}_i + h^\prime(\vec{\phi}_i) \times \Theta_{i-1}^\transpose \vec{\varepsilon}_{i-1}
+        \dot{\vec{\phi}}_i & = - \vec{\varepsilon}_i + h^\prime(\vec{\phi}_i) \times \boldsymbol{\Theta}_{i-1}^\transpose \vec{\varepsilon}_{i-1}
         \quad , \\
         \label{eq:dynamical_system_epsilon}
-        \dot{\vec{\varepsilon}}_i & = \vec{\phi}_i - \Theta_i h(\vec{\phi}_{i+1}) - \Sigma_i \vec{\varepsilon}_i
+        \dot{\vec{\varepsilon}}_i & = \vec{\phi}_i - \boldsymbol{\Theta}_i h(\vec{\phi}_{i+1}) - \boldsymbol{\Sigma}_i \vec{\varepsilon}_i
         \quad .
       \end{align}
     \item<2-> Generalized equations for the learning task:
       \begin{align}
         \label{eq:dynamical_system_sigma}
-        \pdv{F}{\Sigma_i} & = \frac{1}{2} (\vec{\varepsilon}_i \vec{\varepsilon}_i^\transpose - \Sigma_i^{-1})
+        \pdv{F}{\boldsymbol{\Sigma}_i} & = \frac{1}{2} (\vec{\varepsilon}_i \vec{\varepsilon}_i^\transpose - \boldsymbol{\Sigma}_i^{-1})
         \quad , \\
         \label{eq:dynamical_system_theta}
-        \pdv{F}{\Theta_i} & = \vec{\varepsilon}_i h(\vec{\phi}_{i+1})^\transpose
+        \pdv{F}{\boldsymbol{\Theta}_i} & = \vec{\varepsilon}_i h(\vec{\phi}_{i+1})^\transpose
         \quad .
       \end{align}
     \note[item]<2->{Note the elementwise product and matrices of model and relation parameters.}
   \end{itemize}
 \end{frame}
 
-% MC here just hint to the possibility of extending local plasticity to mutliple layers (cf. 5.2).
 \begin{frame}
   \frametitle{Recover local plasticity}
-  \begin{itemize}
-    \item % MC continue.
-  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.4\textheight]{Fig7}
+  \end{center}
+  Fig. 7 from article: networks satisfying local plasticity for (a) single variable model and (b) multiple variables model. They implement the generalized dynamical system
+  \begin{equation}
+    \label{eq:dynamical_system_prediction_errors}
+    \begin{cases}
+      \dot{\vec{\varepsilon}}_i = \vec{\phi}_i - g_i(\vec{\phi}_{i+1}) - \vec{e}_i \\
+      \dot{\vec{e}}_i = \boldsymbol{\Sigma}_i \vec{\varepsilon}_i - \vec{e}_i
+    \end{cases}
+    \quad .
+  \end{equation}
+  \note{
+    \begin{itemize}
+      \item The update rule for the model parameters is Hebbian and contains the learning rate as hyperparameter of the model.
+      \item Convergence of prediction errors to the sample variances is guaranteed if the most likely feature values change at slower time scales.
+    \end{itemize}
+  }
 \end{frame}
 
 % MC insert Exercise_5.
 
 
 
-% MC here resume the Discussion.
 \section{Conclusion}
 \begin{frame}
   \frametitle{Conclusion}
   \begin{itemize}
-    \item % MC complete with resume of content and future work.
+    \item Stimuli weighted by noise.
+    \item Learn covariance of stimuli.
+    \item Attentional modulation.
   \end{itemize}
 %  \vfill
 %  \onslide<2->{
