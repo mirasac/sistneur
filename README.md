@@ -7,10 +7,10 @@ The course is teached by prof. Tommaso Brischetto Costa.
 The paper presented during the exam is titled [A tutorial on the free-energy framework for modelling perception and learning](http://dx.doi.org/10.1016/j.jmp.2015.11.003).
 
 ## Environment
-The code is writte in Python 3.10.
+The code is written in Python 3.10.
 
 ### Repostory structure
-Each file is named as the execise it refers to and it is a script containing my solution.
+Each file has name `Exercise_x.jpg` where `x` is the number of the exercise and it is a script containing my solution.
 
 ## License
-All material in this repository is under the license specified in file [LICENSE](https://raw.githubusercontent.com/mirasac/sistneur/main/LICENSE), except for files matching name `Fig*.jpg` in folder `presentation/figures/`, which are creation of Rafal Bogacz (cf. CC BY license specified in the paper).
+All material in this repository is under the license specified in file [LICENSE](https://raw.githubusercontent.com/mirasac/sistneur/main/LICENSE), except for files matching name `Fig*.jpg` in folder `presentation/figures/`, which are creation of the author of the article (cf. CC BY license specified in the paper).
